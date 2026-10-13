@@ -50,11 +50,25 @@ fun LemonadeStepsWithButtonImageText(modifier: Modifier = Modifier){
         step = 1
     }
 
+    val textResource = when (step){
+        1 -> R.string.step_one
+        2 -> R.string.step_two
+        3 -> R.string.step_three
+        else -> {R.string.step_four}
+    }
+
     val imageResource = when (step){
         1 -> R.drawable.lemon_tree
         2 -> R.drawable.lemon_squeeze
         3 -> R.drawable.lemon_drink
         else -> {R.drawable.lemon_restart}
+    }
+
+    val contentResource = when (step){
+        1 -> R.string.content_desc_lemon_tree
+        2 -> R.string.content_desc_lemon
+        3 -> R.string.content_desc_glass_of_lemonade
+        else -> {R.string.content_desc_empty_glass}
     }
 
     Column(
@@ -63,12 +77,12 @@ fun LemonadeStepsWithButtonImageText(modifier: Modifier = Modifier){
     ) {
         Button(onClick = {step++}) {
             Image(
-                painter = painterResource(R.drawable.lemon_tree),
-                contentDescription = stringResource(R.string.content_desc_lemon_tree)
+                painter = painterResource(imageResource),
+                contentDescription = stringResource(contentResource)
             )
         }
         Spacer(modifier = Modifier.height(34.dp))
-        Text(stringResource(R.string.step_one), modifier = Modifier)
+        Text(stringResource(textResource), modifier = Modifier)
     }
 }
 
